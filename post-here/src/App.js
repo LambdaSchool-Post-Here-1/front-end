@@ -31,6 +31,9 @@ function App() {
       <Route path='/sign-up'
         component={NewUser}
       />
+      <PrivateRoute path='/post-input'
+        // component={PostInput}
+      />
     </div>
   );
 }

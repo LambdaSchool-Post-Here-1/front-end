@@ -18,12 +18,18 @@ function App() {
           <li>
             <Link to='/sign-up'>Sign Up</Link>
           </li>
+          <li>
+            <Link to='/post-input'>New Post</Link>
+          </li>
         </ul>
         <Route path='/' 
           // component={LandingPage}
         />
         <Route path='/auth/login' 
           // component={Login}
+        />
+        <PrivateRoute path='/post-input'
+          // component={PostInput}
         />
       </div>
   );

@@ -1,7 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
+
+const initialFormValues = {
+  username: "",
+  password: "",
+};
 
 function Login(props) {
-  const { values, onInputChange, onSubmit } = props;
+
+  const [formValues, setFormValues] = useState(initialFormValues)
+
+  const onInputChange = (event) => {
+    const { name } = event.target;
+    const { value } = event.target;
+    setFormValues({ ...formValues, [name]: value });
+  }
+  const onSubmit = (event) => {
+    event.preventDefault();
+    //what do with login information object?
+    console.log(formValues)
+    setFormValues(initialFormValues)
+  }
 
   return (
     <div className="login">
@@ -12,8 +30,8 @@ function Login(props) {
           type="text" 
           name="username" 
           placeholder="UserName"
-          // value={values.username}
-          // onChange={onInputChange}
+          value={formValues.username}
+          onChange={onInputChange}
           />
         </label>
         <label>
@@ -21,8 +39,8 @@ function Login(props) {
           type="password" 
           name="password" 
           placeholder="Password" 
-          // value={values.password}
-          // onChange={onInputChange}
+          value={formValues.password}
+          onChange={onInputChange}
           />
         </label>
 

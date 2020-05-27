@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
 import PrivateRoute from './components/PrivateRoute';
+import PostInput from './components/PostInput';
 import Login from './components/Login';
 import NewUser from './components/NewUser';
 
@@ -21,6 +22,9 @@ function App() {
         <li>
           <Link to='/sign-up'>Sign Up</Link>
         </li>
+        <li>
+          <Link to='/post-input'>New Post</Link>
+        </li>
       </ul>
       <Route path='/'
       // component={LandingPage}
@@ -32,7 +36,7 @@ function App() {
         component={NewUser}
       />
       <PrivateRoute path='/post-input'
-        // component={PostInput}
+        component={PostInput}
       />
     </div>
   );

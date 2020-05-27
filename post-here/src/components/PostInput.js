@@ -103,14 +103,14 @@ const PostInput = () => {
 
     return (
         <form className='post-input-form'>
-            <h2>New Post Input Form</h2>
+            <h2>Create a new Reddit post!</h2>
 
             {/* ///////////// TEXT INPUTS /////////// */}
             <label>Title:&nbsp;
                 <input    
                     value={formValues.postTitle}
                     onChange={onInputChange}
-                    name='title'
+                    name='postTitle'
                     type='text'
                 />
             </label>
@@ -121,7 +121,7 @@ const PostInput = () => {
                 <input 
                     value={formValues.postContent}
                     onChange={onInputChange}
-                    name='content'
+                    name='postContent'
                     type='text'
                 />
             </label>

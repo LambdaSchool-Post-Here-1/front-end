@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import loginSchema from "./LoginSchema";
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialFormValues = {
   username: "",
@@ -14,7 +16,8 @@ const initialFormErrors = {
 
 function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const { push } = useHistory();
 
   const onInputChange = (event) => {
     const { name } = event.target;
@@ -39,15 +42,17 @@ function Login(props) {
   const onSubmit = (event) => {
     event.preventDefault();
     //what do with login information object?
-    axios
+    axiosWithAuth()
       .post("https://post-here-heroku.herokuapp.com/api/auth/login", formValues)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data);
+        localStorage.setItem('token', res.data.token);
+        push('/post-input');
       })
       .catch((err) => {
         console.log("error")
       });
-    console.log(formValues);
+    // console.log(formValues);
     setFormValues(initialFormValues);
   };
 

@@ -19,20 +19,20 @@ function Login(props) {
   const onInputChange = (event) => {
     const { name } = event.target;
     const { value } = event.target;
-    // yup
-    // .reach(loginSchema, event.target.name)
-    // .validate(event.target.value)
-    // .then(valid => {
-    //   setFormErrors({
-    //     ...formErrors, [event.target.name]: ""
-    //   })
-    // })
-    // .catch(err => {
-    //   setFormErrors({
-    //     ...formErrors,
-    //     [name]:err.errors[0]
-    //   })
-    // })
+    yup
+    .reach(loginSchema, name)
+    .validate(event.target.value)
+    .then(valid => {
+      setFormErrors({
+        ...formErrors, [name]: ""
+      })
+    })
+    .catch(err => {
+      setFormErrors({
+        ...formErrors,
+        [name]:err.errors[0]
+      })
+    })
 
     setFormValues({ ...formValues, [name]: value });
   };
@@ -55,7 +55,8 @@ function Login(props) {
     <div className="login">
       <form className="formContainer" onSubmit={onSubmit}>
         <h2>Login</h2>
-        <div className="errors">{formErrors.name}</div>
+        <div className="errors">{formErrors.username}</div>
+        <div className="errors">{formErrors.password}</div>
         <label>
           <input
             type="text"

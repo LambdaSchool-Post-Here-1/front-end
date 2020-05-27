@@ -117,7 +117,7 @@ const PostInput = () => {
             <h3>{formErrors.postTitle}</h3>
             &nbsp;&nbsp;&nbsp; {/* spacing between input fields */}
 
-            <label>Email:&nbsp;
+            <label>Content:&nbsp;
                 <input 
                     value={formValues.postContent}
                     onChange={onInputChange}

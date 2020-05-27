@@ -64,7 +64,7 @@ function Login(props) {
           <input
             type="text"
             name="username"
-            placeholder="UserName"
+            placeholder="Username"
             value={formValues.username}
             onChange={onInputChange}
           />

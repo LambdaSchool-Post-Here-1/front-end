@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
 import loginSchema from "./LoginSchema";
-import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 

@@ -38,13 +38,13 @@ const PostInput = () => {
 
     useEffect(() => {
         getData();
-    },[posts])
+    },[])
 
     const getData = () => {
         axiosWithAuth()
             .get('/api/reddit')
             .then(res => {
-                console.log(res);
+                console.log(res.data);
                 setPosts(res.data);
             })
             .catch(err => console.log(err))

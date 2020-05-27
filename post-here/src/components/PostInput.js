@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import * as yup from 'yup';
 import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';

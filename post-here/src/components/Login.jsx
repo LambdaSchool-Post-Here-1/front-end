@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import loginSchema from "./LoginSchema";
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
@@ -45,7 +46,6 @@ function Login(props) {
     axiosWithAuth()
       .post("https://post-here-heroku.herokuapp.com/api/auth/login", formValues)
       .then((res) => {
-        // console.log(res.data);
         localStorage.setItem('token', res.data.token);
         push('/post-input');
       })
@@ -66,7 +66,7 @@ function Login(props) {
           <input
             type="text"
             name="username"
-            placeholder="UserName"
+            placeholder="Username"
             value={formValues.username}
             onChange={onInputChange}
           />

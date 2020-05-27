@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <ul>
         <li>
-          <Link to='/'>Home</Link>
+          <a href='https://marketing-page-mu.now.sh/'>Home</a>
         </li>
         <li>
           <Link to='/login'>Login</Link>
@@ -26,9 +26,6 @@ function App() {
           <Link to='/post-input'>New Post</Link>
         </li>
       </ul>
-      <Route path='/'
-      // component={LandingPage}
-      />
       <Route path='/login'
         component={Login}
       />

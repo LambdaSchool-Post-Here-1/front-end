@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 import NewUserSchema from "./NewUserSchema";
 import * as yup from "yup";
 
 const initialFormValues = {
   username: "",
-  email: "",
+  // email: "",
   password: "",
 };
 const initialFormErrors = {
   username: "",
-  email: "",
+  // email: "",
   password: "",
 };
 
 function NewUser(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const { push } = useHistory();
 
   const onInputChange = (event) => {
     const { name } = event.target;
@@ -38,10 +40,19 @@ function NewUser(props) {
       });
     setFormValues({ ...formValues, [name]: value });
   };
+
   const onSubmit = (event) => {
     event.preventDefault();
+
+    axiosWithAuth()
+      .post('api/auth/register', formValues)
+      .then(res => {
+        console.log(res);
+        push('/post-input');
+      })
+      .catch(err => console.log(err))
     //what do with login information object?
-    console.log(formValues);
+    // console.log(formValues);
     setFormValues(initialFormValues);
   };
 
@@ -61,7 +72,7 @@ function NewUser(props) {
             onChange={onInputChange}
           />
         </label>
-        <label>
+        {/* <label>
           <input
             type="text"
             name="email"
@@ -69,13 +80,13 @@ function NewUser(props) {
             value={formValues.email}
             onChange={onInputChange}
           />
-        </label>
+        </label> */}
         <label>
           <input
             type="password"
             name="password"
             placeholder="Create Password"
-            value={formValues.newPassword}
+            value={formValues.password}
             onChange={onInputChange}
           />
         </label>

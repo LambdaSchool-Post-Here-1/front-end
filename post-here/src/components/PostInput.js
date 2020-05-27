@@ -36,6 +36,10 @@ const PostInput = () => {
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [posts, setPosts] = useState([]);
 
+    useEffect(() => {
+        getData();
+    },[posts])
+
     const getData = () => {
         axiosWithAuth()
             .get('/api/reddit')
@@ -46,6 +50,86 @@ const PostInput = () => {
             .catch(err => console.log(err))
     };
 
+    const createPost = (newPost) => {
+        axiosWithAuth()
+            .post('/api/reddit', newPost)
+            .then(res => {
+                console.log(res);
+                setPosts([...posts, newPost])
+            })
+            .catch(err => console.log(err))
+    }
+
+    const onInputChange = e => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        yup
+            .reach(formSchema, name)
+            .validate(value)
+
+            .then(valid => {
+                // CLEAR ERROR
+                setFormErrors({
+                    ...formErrors,
+                    [name]: ''
+                });
+            })
+            .catch(err => {
+                setFormErrors({
+                    ...formErrors,
+                    [name]: err.errors[0]
+                });
+            })
+
+        setFormValues({
+            ...formValues,
+            [name]: value
+        });
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+
+        const newPost = {
+            title: formValues.postTitle,
+            content: formValues.postContent
+        };
+
+        createPost(newPost);
+        setFormValues(initialFormValues);
+        getData();
+    };
+
+    return (
+        <form className='post-input-form'>
+            <h2>New Post Input Form</h2>
+
+            {/* ///////////// TEXT INPUTS /////////// */}
+            <label>Title:&nbsp;
+                <input    
+                    value={formValues.postTitle}
+                    onChange={onInputChange}
+                    name='title'
+                    type='text'
+                />
+            </label>
+            <h3>{formErrors.postTitle}</h3>
+            &nbsp;&nbsp;&nbsp; {/* spacing between input fields */}
+
+            <label>Email:&nbsp;
+                <input 
+                    value={formValues.postContent}
+                    onChange={onInputChange}
+                    name='content'
+                    type='text'
+                />
+            </label>
+            <h3>{formErrors.postContent}</h3>
+
+            <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
+        </form>
+    );
 };
 
 export default PostInput;

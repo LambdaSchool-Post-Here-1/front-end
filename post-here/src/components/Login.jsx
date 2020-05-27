@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import loginSchema from "./LoginSchema";
 import * as yup from 'yup';
 
@@ -14,7 +15,8 @@ const initialFormErrors = {
 
 function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const { push } = useHistory();
 
   const onInputChange = (event) => {
     const { name } = event.target;
@@ -43,6 +45,7 @@ function Login(props) {
       .post("https://post-here-heroku.herokuapp.com/api/auth/login", formValues)
       .then((res) => {
         console.log(res.data)
+        push('/post-input');
       })
       .catch((err) => {
         console.log("error")

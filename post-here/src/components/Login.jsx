@@ -1,17 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import loginSchema from "./LoginSchema";
+import * as yup from 'yup';
 
 const initialFormValues = {
   username: "",
   password: "",
 };
+const initialFormErrors = {
+  username: "",
+  password: "",
+}
 
 function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
 
   const onInputChange = (event) => {
     const { name } = event.target;
     const { value } = event.target;
+    // yup
+    // .reach(loginSchema, event.target.name)
+    // .validate(event.target.value)
+    // .then(valid => {
+    //   setFormErrors({
+    //     ...formErrors, [event.target.name]: ""
+    //   })
+    // })
+    // .catch(err => {
+    //   setFormErrors({
+    //     ...formErrors,
+    //     [name]:err.errors[0]
+    //   })
+    // })
+
     setFormValues({ ...formValues, [name]: value });
   };
   const onSubmit = (event) => {
@@ -33,6 +55,7 @@ function Login(props) {
     <div className="login">
       <form className="formContainer" onSubmit={onSubmit}>
         <h2>Login</h2>
+        <div className="errors">{formErrors.name}</div>
         <label>
           <input
             type="text"
@@ -59,3 +82,5 @@ function Login(props) {
 }
 
 export default Login;
+
+/// --> all the posts the users have made 'https://post-here-heroku.herokuapp.com/api/reddit'

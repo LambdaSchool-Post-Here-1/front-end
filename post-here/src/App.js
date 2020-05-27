@@ -12,6 +12,11 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <header>
+      <div className="logo">
+      <img src="https://cdn0.iconfinder.com/data/icons/application-12/50/Reddit-512.png" alt="Reddit Logo"/>
+      <h1>post here</h1>
+      </div>
       <ul>
         <li>
           <a href='https://marketing-page-mu.now.sh/'>Home</a>
@@ -26,6 +31,7 @@ function App() {
           <Link to='/post-input'>New Post</Link>
         </li>
       </ul>
+      </header>
       <Route path='/login'
         component={Login}
       />

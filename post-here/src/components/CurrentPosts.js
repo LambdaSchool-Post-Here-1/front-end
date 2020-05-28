@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const CurrentPosts = () => {
-    const [posts, setPosts] = useState([]);
-    const { id } = useParams();
-    // const [postsLength, setPostsLength] = useState(0);
+const CurrentPosts = ({ posts }) => {
 
     useEffect(() => {
         getSavedData();
@@ -15,8 +11,7 @@ const CurrentPosts = () => {
         axiosWithAuth()
         .get('/api/reddit')
         .then(res => {
-            console.log(res);
-            setPosts(res.data);         
+            console.log(res);     
         })
         .catch(err => console.log(err))
     };

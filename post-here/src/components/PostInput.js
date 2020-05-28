@@ -131,8 +131,7 @@ const PostInput = () => {
                         name='postContent'
                         type='text'
                     />
-
-                </label>
+                    
                 <h4 className="errors">{formErrors.postContent}</h4>
                 <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
             </form>

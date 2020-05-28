@@ -61,13 +61,14 @@ function NewUser(props) {
       <form className="createAccount" onSubmit={onSubmit}>
         <h2>Create An Account</h2>
         <div className='errors'>{formErrors.username}</div>
-        <div className="errors">{formErrors.email}</div>
+        {/* <div className="errors">{formErrors.email}</div> */}
         <div className="errors">{formErrors.password}</div>
         <label>
           <input
+            id="username"
             type="text"
             name="username"
-            placeholder="Username"
+            placeholder="Create Username"
             value={formValues.username}
             onChange={onInputChange}
           />
@@ -83,6 +84,7 @@ function NewUser(props) {
         </label> */}
         <label>
           <input
+            id="password"
             type="password"
             name="password"
             placeholder="Create Password"
@@ -90,7 +92,7 @@ function NewUser(props) {
             onChange={onInputChange}
           />
         </label>
-        <button>Sign Up</button>
+        <button id="sign-up">Sign Up</button>
       </form>
     </div>
   );

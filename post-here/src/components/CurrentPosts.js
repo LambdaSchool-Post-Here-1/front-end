@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const CurrentPosts = () => {
     const [posts, setPosts] = useState([]);
+    const { id } = useParams();
 
     useEffect(() => {
         axiosWithAuth()
             .get('/api/reddit')
             .then(res => {
-                const postLength = posts.length;
                 console.log(res);
-                // if ()
                 setPosts(res.data);
             })
             .catch(err => console.log(err))
-    }, [posts.length]);
+    }, [posts]);
 
     return (
         <div className='posts-container'>
@@ -24,6 +24,7 @@ const CurrentPosts = () => {
                     <div className='post'>
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
+                        <button id='delete'>Delete Post</button>
                     </div>)
             })}
         </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import CurrentPosts from './CurrentPosts';
 
 /////////// VARIABLES ///////////////
 const postUrl = 'https://post-here-heroku.herokuapp.com/api/reddit';
@@ -53,7 +52,19 @@ const PostInput = () => {
             .post('/api/reddit', newPost)
             .then(res => {
                 console.log(res);
-                setPosts([...posts, newPost]);
+                // setPosts([...posts, newPost]);
+                setTimeout(getData(), 1000);
+            })
+            .catch(err => console.log(err))
+    }
+
+    const deletePost = (e, post) => {
+        e.preventDefault();
+
+        axiosWithAuth()
+            .delete(`/api/reddit/${post.id}`)
+            .then(res => {
+                console.log(res);
                 getData();
             })
             .catch(err => console.log(err))
@@ -136,7 +147,20 @@ const PostInput = () => {
                 <h4 className="errors">{formErrors.postContent}</h4>
                 <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
             </form>
-            <CurrentPosts />
+            <div className='posts-container'>
+                <h3>Current Reddit Posts</h3>
+                
+                {posts && posts.map((post, index) => {
+                    return (
+                        <div key={index} className='post'>
+                            <h3>{post.title}</h3>
+                            <p>{post.content}</p>
+                            <button id='delete' 
+                            onClick={(e) => deletePost(e, post)}
+                            >Delete Post</button>
+                        </div>)
+                })}
+            </div>
         </>
     );
 };

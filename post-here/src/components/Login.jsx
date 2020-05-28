@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import loginSchema from "./LoginSchema";
 import * as yup from 'yup';
@@ -64,6 +63,7 @@ function Login(props) {
         <div className="errors">{formErrors.password}</div>
         <label>
           <input
+            id="username"
             type="text"
             name="username"
             placeholder="Username"
@@ -73,6 +73,7 @@ function Login(props) {
         </label>
         <label>
           <input
+            id="password"
             type="password"
             name="password"
             placeholder="Password"
@@ -81,7 +82,7 @@ function Login(props) {
           />
         </label>
 
-        <button>Login</button>
+        <button id="login">Login</button>
       </form>
     </div>
   );

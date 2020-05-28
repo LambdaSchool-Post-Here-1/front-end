@@ -55,15 +55,8 @@ h2{
   flex-direction: column;
   align-items: center;
 }
-.post-input-form{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-}
-.label{
-  color: white;
-  font-family:'ABeeZee', sans-serif;
-}
+
+
 input{
   width: 20vw;
   padding: 5%;

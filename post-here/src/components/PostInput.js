@@ -125,7 +125,7 @@ const PostInput = () => {
                 </div>
 
                 {/* ///////////// TEXT INPUTS /////////// */}
-                <label for='title'>Title:</label>
+                <label htmlFor='title'>Title:</label>
                     <input    
                         id='title'
                         value={formValues.postTitle}
@@ -135,7 +135,7 @@ const PostInput = () => {
                     />
                 <h4 className="errors">{formErrors.postTitle}</h4>
 
-                <label for='content'>Content:</label>
+                <label htmlFor='content'>Content:</label>
                     <textarea
                         id='content'
                         value={formValues.postContent}

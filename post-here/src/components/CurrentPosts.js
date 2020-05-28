@@ -12,11 +12,12 @@ const CurrentPosts = () => {
                 setPosts(res.data);
             })
             .catch(err => console.log(err))
-    });
+    }, [posts]);
 
     return (
         <div className='posts-container'>
-            {posts && posts.forEach(post => {
+            
+            {posts && posts.map(post => {
                 return (
                     <div>
                         <h3>{post.title}</h3>

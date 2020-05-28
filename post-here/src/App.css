@@ -45,7 +45,12 @@ h2{
   font-size: 2.4em;
   color: white;
 }
+h3 {
+  font-family:'ABeeZee', sans-serif;
+  color: white
+}
 h4 {
+  font-family:'ABeeZee', sans-serif;
   margin-top: 0%;
   margin-bottom: 2%;
   color: red;
@@ -185,5 +190,9 @@ button{
   margin: 1%;
   padding: 1%;
   border-radius: 1rem;
+}
+
+.post p {
+  color: white;
 }
 

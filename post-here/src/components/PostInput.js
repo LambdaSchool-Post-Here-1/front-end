@@ -53,7 +53,8 @@ const PostInput = () => {
             .post('/api/reddit', newPost)
             .then(res => {
                 console.log(res);
-                setPosts([...posts, newPost])
+                setPosts([...posts, newPost]);
+                getData();
             })
             .catch(err => console.log(err))
     }

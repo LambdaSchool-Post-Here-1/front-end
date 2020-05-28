@@ -35,6 +35,7 @@ const CurrentPosts = () => {
 
     return (
         <div className='posts-container'>
+            <h3>Current Reddit Posts</h3>
             
             {posts && posts.map((post, index) => {
                 return (

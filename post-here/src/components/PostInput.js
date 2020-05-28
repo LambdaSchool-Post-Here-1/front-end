@@ -112,7 +112,7 @@ const PostInput = () => {
                     type='text'
                 />
             </label>
-            <h3>{formErrors.postTitle}</h3>
+            <h3 classname="errors">{formErrors.postTitle}</h3>
             &nbsp;&nbsp;&nbsp; {/* spacing between input fields */}
 
             <label>Content:&nbsp;
@@ -123,7 +123,7 @@ const PostInput = () => {
                     type='text'
                 />
             </label>
-            <h3>{formErrors.postContent}</h3>
+            <h3 className="errors">{formErrors.postContent}</h3>
 
             <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
         </form>

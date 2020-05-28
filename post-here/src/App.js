@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PostInput from './components/PostInput';
 import Login from './components/Login';
 import NewUser from './components/NewUser';
+import Logo from './Assets/Reddit-logo.png'
 
 import './App.css';
 
@@ -14,7 +15,7 @@ function App() {
     <div className="App">
       <header>
       <div className="logo">
-      <img src="https://cdn0.iconfinder.com/data/icons/application-12/50/Reddit-512.png" alt="Reddit Logo"/>
+      <img src={Logo} alt="Reddit Logo"/>
       <h1>post here</h1>
       </div>
       <ul>

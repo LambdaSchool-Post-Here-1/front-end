@@ -121,18 +121,19 @@ const PostInput = () => {
                         name='postTitle'
                         type='text'
                     />
-                <h4>{formErrors.postTitle}</h4>
+                <h4 className="errors">{formErrors.postTitle}</h4>
 
                 <label for='content'>Content:</label>
-                <textarea
-                    id='content'
-                    value={formValues.postContent}
-                    onChange={onInputChange}
-                    name='postContent'
-                    type='text'
-                />
-                <h4>{formErrors.postContent}</h4>
+                    <textarea
+                        id='content'
+                        value={formValues.postContent}
+                        onChange={onInputChange}
+                        name='postContent'
+                        type='text'
+                    />
 
+                </label>
+                <h4 className="errors">{formErrors.postContent}</h4>
                 <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
             </form>
             <CurrentPosts />

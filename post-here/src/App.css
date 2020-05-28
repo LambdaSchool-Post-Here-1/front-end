@@ -39,9 +39,7 @@ a:hover{
   transition: ease-in 0.3s;
   color: #404040;
 }
-.login{
-  background-color: #454545;
-}
+
 h2{
   font-family:'ABeeZee', sans-serif;
   font-size: 2.4em;
@@ -62,6 +60,7 @@ h4 {
   flex-direction: column;
   align-items: center;
 }
+
 
 .createAccount button {
   text-align: center;

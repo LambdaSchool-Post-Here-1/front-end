@@ -5,26 +5,45 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 const CurrentPosts = () => {
     const [posts, setPosts] = useState([]);
     const { id } = useParams();
+    // const [postsLength, setPostsLength] = useState(0);
 
     useEffect(() => {
+        getSavedData();
+    }, []);
+
+    const getSavedData = () => {
         axiosWithAuth()
-            .get('/api/reddit')
+        .get('/api/reddit')
+        .then(res => {
+            console.log(res);
+            setPosts(res.data);         
+        })
+        .catch(err => console.log(err))
+    };
+
+    const deletePost = (e, post) => {
+        e.preventDefault();
+
+        axiosWithAuth()
+            .delete(`/api/reddit/${post.id}`)
             .then(res => {
                 console.log(res);
-                setPosts(res.data);
+                getSavedData();
             })
             .catch(err => console.log(err))
-    }, [posts]);
+    }
 
     return (
         <div className='posts-container'>
             
-            {posts && posts.map(post => {
+            {posts && posts.map((post, index) => {
                 return (
-                    <div className='post'>
+                    <div key={index} className='post'>
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
-                        <button id='delete'>Delete Post</button>
+                        <button id='delete' 
+                        onClick={(e) => deletePost(e, post)}
+                        >Delete Post</button>
                     </div>)
             })}
         </div>

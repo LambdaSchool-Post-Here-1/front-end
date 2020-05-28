@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
-import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import CurrentPosts from './CurrentPosts';
 
 /////////// VARIABLES ///////////////
 const postUrl = 'https://post-here-heroku.herokuapp.com/api/reddit';
@@ -100,40 +100,43 @@ const PostInput = () => {
     };
 
     return (
-        <form className='post-input-form'>
-            <h2>Create a new Reddit post!</h2>
+        <>
+            <form className='post-input-form'>
+                <h2>Create a new Reddit post!</h2>
 
-            <div className='tips-tricks'>
-                <h3>Tips & Tricks</h3>
-                
-                    <h4>Remember to make your Reddit post thorough</h4>
-                    <h4>Specify which platform you're working with</h4>
+                <div className='tips-tricks'>
+                    <h3>Tips & Tricks</h3>
+                    
+                        <h4>Remember to make your Reddit post thorough</h4>
+                        <h4>Specify which platform you're working with</h4>
 
-            </div>
+                </div>
 
-            {/* ///////////// TEXT INPUTS /////////// */}
-            <label for='title'>Title:</label>
-                <input    
-                    id='title'
-                    value={formValues.postTitle}
+                {/* ///////////// TEXT INPUTS /////////// */}
+                <label for='title'>Title:</label>
+                    <input    
+                        id='title'
+                        value={formValues.postTitle}
+                        onChange={onInputChange}
+                        name='postTitle'
+                        type='text'
+                    />
+                <h4>{formErrors.postTitle}</h4>
+
+                <label for='content'>Content:</label>
+                <textarea
+                    id='content'
+                    value={formValues.postContent}
                     onChange={onInputChange}
-                    name='postTitle'
+                    name='postContent'
                     type='text'
                 />
-            <h4>{formErrors.postTitle}</h4>
+                <h4>{formErrors.postContent}</h4>
 
-            <label for='content'>Content:</label>
-            <textarea
-                id='content'
-                value={formValues.postContent}
-                onChange={onInputChange}
-                name='postContent'
-                type='text'
-            />
-            <h4>{formErrors.postContent}</h4>
-
-            <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
-        </form>
+                <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
+            </form>
+            <CurrentPosts />
+        </>
     );
 };
 

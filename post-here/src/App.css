@@ -178,6 +178,9 @@ button{
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 95%;
+  margin: 3rem auto 0;
+  border-top: 1px solid #ff4500;
 }
 
 .post {
@@ -187,7 +190,7 @@ button{
   align-items: center;
   background-color: #6e6e6e;
   color: black;
-  margin: 1%;
+  margin: 2%;
   padding: 1%;
   border-radius: 1rem;
 }

@@ -103,27 +103,34 @@ const PostInput = () => {
         <form className='post-input-form'>
             <h2>Create a new Reddit post!</h2>
 
+            <div className='tips-tricks'>
+                <h3>Tips & Tricks</h3>
+                
+                    <h4>Remember to make your Reddit post thorough</h4>
+                    <h4>Specify which platform you're working with</h4>
+
+            </div>
+
             {/* ///////////// TEXT INPUTS /////////// */}
-            <label>Title:&nbsp;
+            <label for='title'>Title:</label>
                 <input    
+                    id='title'
                     value={formValues.postTitle}
                     onChange={onInputChange}
                     name='postTitle'
                     type='text'
                 />
-            </label>
-            <h3>{formErrors.postTitle}</h3>
-            &nbsp;&nbsp;&nbsp; {/* spacing between input fields */}
+            <h4>{formErrors.postTitle}</h4>
 
-            <label>Content:&nbsp;
-                <input 
-                    value={formValues.postContent}
-                    onChange={onInputChange}
-                    name='postContent'
-                    type='text'
-                />
-            </label>
-            <h3>{formErrors.postContent}</h3>
+            <label for='content'>Content:</label>
+            <textarea
+                id='content'
+                value={formValues.postContent}
+                onChange={onInputChange}
+                name='postContent'
+                type='text'
+            />
+            <h4>{formErrors.postContent}</h4>
 
             <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
         </form>

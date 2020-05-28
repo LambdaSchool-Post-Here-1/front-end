@@ -8,18 +8,20 @@ const CurrentPosts = () => {
         axiosWithAuth()
             .get('/api/reddit')
             .then(res => {
+                const postLength = posts.length;
                 console.log(res);
+                // if ()
                 setPosts(res.data);
             })
             .catch(err => console.log(err))
-    }, [posts]);
+    }, [posts.length]);
 
     return (
         <div className='posts-container'>
             
             {posts && posts.map(post => {
                 return (
-                    <div>
+                    <div className='post'>
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
                     </div>)

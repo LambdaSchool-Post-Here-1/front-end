@@ -6,7 +6,8 @@ import PrivateRoute from './components/PrivateRoute';
 import PostInput from './components/PostInput';
 import Login from './components/Login';
 import NewUser from './components/NewUser';
-import Logo from './Assets/Reddit-logo.png'
+import Logo from './Assets/Reddit-logo.png';
+import UpdatePost from './components/UpdatePost';
 
 import './App.css';
 
@@ -62,6 +63,9 @@ function App() {
       />
       <PrivateRoute path='/post-input'
         component={PostInput}
+      />
+      <PrivateRoute path='/update-post/:id'
+        component={UpdatePost}
       />
     </div>
   );

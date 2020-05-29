@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
+import updatePost from './UpdatePost';
+import { useHistory } from 'react-router-dom';
 
 /////////// VARIABLES ///////////////
 const postUrl = 'https://post-here-heroku.herokuapp.com/api/reddit';
@@ -34,6 +36,7 @@ const PostInput = () => {
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [posts, setPosts] = useState([]);
     const [prediction, setPrediction] = useState('');
+    const { push } = useHistory();
 
     useEffect(() => {
         getData();
@@ -175,6 +178,9 @@ const PostInput = () => {
                             <button id='delete' 
                             onClick={(e) => deletePost(e, post)}
                             >Delete Post</button>
+                            <button id='update' 
+                            onClick={() => push(`/update-post/${post.id}`)}
+                            >Update Post</button>
                         </div>)
                 })}
             </div>

@@ -155,7 +155,7 @@ const PostInput = () => {
                         name='postContent'
                         type='text'
                     />
-                    
+
                 <h4 className="errors">{formErrors.postContent}</h4>
                 <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
             </form>
@@ -165,7 +165,7 @@ const PostInput = () => {
                 </div>
             }
             <div className='posts-container'>
-                <h2>Current Reddit Posts</h2>
+                <h2>Recent Reddit Posts</h2>
                 
                 {posts && posts.map((post, index) => {
                     return (

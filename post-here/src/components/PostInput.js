@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 /////////// VARIABLES ///////////////
 const postUrl = 'https://post-here-heroku.herokuapp.com/api/reddit';
@@ -32,6 +33,7 @@ const PostInput = () => {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [posts, setPosts] = useState([]);
+    const [prediction, setPrediction] = useState('');
 
     useEffect(() => {
         getData();
@@ -70,6 +72,15 @@ const PostInput = () => {
             .catch(err => console.log(err))
     }
 
+    const fetchPrediction = (newPost) => {
+        axios
+            .post('https://posthereapp.herokuapp.com/predict', {"text": newPost.content})
+            .then(res => {
+                setPrediction(res.data);
+            })
+            .catch(err => console.log(err))
+    };
+
     const onInputChange = e => {
         const name = e.target.name;
         const value = e.target.value;
@@ -106,6 +117,7 @@ const PostInput = () => {
             content: formValues.postContent
         };
 
+        fetchPrediction(newPost);
         createPost(newPost);
         setFormValues(initialFormValues);
         getData();
@@ -147,8 +159,13 @@ const PostInput = () => {
                 <h4 className="errors">{formErrors.postContent}</h4>
                 <button onClick={onSubmit} disabled={formDisabled} id='submit' >Submit</button>
             </form>
+            {prediction && 
+                <div className='subreddit-prediction'>
+                    <p>Post your question in the {prediction} subreddit</p>
+                </div>
+            }
             <div className='posts-container'>
-                <h3>Current Reddit Posts</h3>
+                <h2>Current Reddit Posts</h2>
                 
                 {posts && posts.map((post, index) => {
                     return (

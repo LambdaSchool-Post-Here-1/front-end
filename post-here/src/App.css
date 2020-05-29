@@ -119,6 +119,9 @@ button{
   font-family:'ABeeZee', sans-serif;
   font-size: 1.2em;
 }
+button:hover {
+  cursor: pointer;
+}
 .post-input-form {
   display: flex;
   align-items: center;
